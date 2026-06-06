@@ -1,0 +1,676 @@
+﻿/* ============================================
+   Jinming Shi 路 Personal Portfolio
+   楂樼骇娣辫壊 路 鏆楅噾鐐圭紑 路 鏋佺畝
+   ============================================ */
+
+/* ---------- 1. 璁捐鍙橀噺 ---------- */
+:root {
+  /* 鑳屾櫙灞傜骇 - 鏆栫伆榛戯紝鍑犱箮绾粦甯︽俯搴?*/
+  --bg-0: #faf9f5;       /* 椤甸潰搴曡壊 */
+  --bg-1: #ffffff;       /* 鍗＄墖 */
+  --bg-2: #f3f1ea;       /* 琛ㄩ潰 */
+  --bg-3: #e8e4d8;       /* 楂樹寒琛ㄩ潰 */
+
+  /* 鏂囧瓧 - 鍋忔殩鐧斤紝涓嶆槸绾櫧 */
+  --text-1: #1a1a1a;     /* 涓绘枃瀛?*/
+  --text-2: #5a5a55;     /* 娆℃枃瀛?*/
+  --text-3: #8a8a82;     /* 杈呭姪鏂囧瓧 */
+  --text-4: #c0bfb8;     /* 绂佺敤 */
+
+  /* 鍗曚竴涓昏壊 - 鏆楅噾/閾滆壊锛岄珮绾уア鍗?*/
+  --accent:       #a8854a;
+  --accent-soft:  #b89968;
+  --accent-dark:  #876935;
+  --accent-bg:    rgba(168, 133, 74, 0.10);
+  --accent-glow:  rgba(168, 133, 74, 0.18);
+
+  /* 杈规 - 鏋佹贰 */
+  --border-1: rgba(26, 26, 26, 0.07);
+  --border-2: rgba(26, 26, 26, 0.11);
+  --border-3: rgba(26, 26, 26, 0.18);
+
+  /* 瀛椾綋 */
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+               "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", "SF Mono", Consolas, monospace;
+
+  /* 闂磋窛绯荤粺 */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-24: 96px;
+
+  /* 瀹瑰櫒 */
+  --max-w: 720px;             /* 闃呰瀹藉害 */
+  --max-w-wide: 1080px;       /* 瀹藉鍣?*/
+
+  /* 杩囨浮 - 缂撴參銆佸厠鍒?*/
+  --t-fast: 0.18s ease;
+  --t-med:  0.32s cubic-bezier(0.4, 0, 0.2, 1);
+  --t-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ---------- 2. 鍩虹閲嶇疆 ---------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-1);
+  background: var(--bg-0);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  min-height: 100vh;
+}
+
+/* 婊氬姩鏉?- 鏋佺畝 */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--border-3);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--text-3); }
+
+a { color: inherit; text-decoration: none; transition: color var(--t-fast); }
+img, svg { max-width: 100%; display: block; }
+button, input, textarea { font: inherit; color: inherit; }
+
+::selection { background: var(--accent); color: #ffffff; }
+
+/* ---------- 3. 鎺掔増鍩虹 ---------- */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--text-1);
+}
+h1 { font-size: clamp(36px, 6vw, 56px); font-weight: 700; }
+h2 { font-size: clamp(28px, 4vw, 36px); }
+h3 { font-size: 20px; }
+p  { color: var(--text-2); }
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--accent);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-4);
+  display: inline-block;
+}
+
+/* ---------- 4. 瀹瑰櫒 ---------- */
+.container {
+  width: 100%;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+.container-wide {
+  width: 100%;
+  max-width: var(--max-w-wide);
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+/* ---------- 5. 瀵艰埅鏍?---------- */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(250, 249, 245, 0.85);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid var(--border-1);
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  max-width: var(--max-w-wide);
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+.nav-brand {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--text-1);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.nav-brand::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-bg);
+}
+.nav-links {
+  display: flex;
+  gap: var(--space-6);
+}
+.nav-link {
+  font-size: 14px;
+  color: var(--text-2);
+  font-weight: 400;
+  padding: 6px 0;
+  position: relative;
+  transition: color var(--t-fast);
+}
+.nav-link:hover { color: var(--text-1); }
+.nav-link.active {
+  color: var(--text-1);
+}
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--accent);
+}
+.nav-toggle {
+  display: none;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border-2);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-2);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+.nav-toggle svg { width: 16px; height: 16px; }
+
+@media (max-width: 640px) {
+  .nav-links {
+    position: fixed;
+    top: 64px;
+    right: 0;
+    left: 0;
+    flex-direction: column;
+    gap: 0;
+    background: var(--bg-0);
+    border-bottom: 1px solid var(--border-1);
+    padding: var(--space-4) var(--space-6);
+    transform: translateY(-110%);
+    transition: transform var(--t-med);
+  }
+  .nav-links.open { transform: translateY(0); }
+  .nav-link {
+    padding: var(--space-3) 0;
+    border-bottom: 1px solid var(--border-1);
+  }
+  .nav-link:last-child { border-bottom: none; }
+  .nav-toggle { display: flex; }
+}
+
+/* ---------- 6. 椤甸潰閫氱敤缁撴瀯 ---------- */
+main { min-height: calc(100vh - 64px - 80px); }
+
+.page-head {
+  padding: var(--space-24) 0 var(--space-12);
+  border-bottom: 1px solid var(--border-1);
+  margin-bottom: var(--space-16);
+}
+.page-head h1 { margin-bottom: var(--space-4); }
+.page-head p {
+  font-size: 18px;
+  max-width: 560px;
+  color: var(--text-2);
+}
+
+section { margin-bottom: var(--space-16); }
+
+/* ---------- 7. Hero ---------- */
+.hero {
+  padding: var(--space-24) 0 var(--space-16);
+}
+.hero .greeting {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-6);
+}
+.hero h1 {
+  font-size: clamp(40px, 7vw, 64px);
+  margin-bottom: var(--space-6);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+.hero h1 .accent { color: var(--accent); }
+.hero .role {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--text-2);
+  margin-bottom: var(--space-8);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.hero .role .dot {
+  width: 6px; height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+.hero .intro {
+  font-size: 19px;
+  line-height: 1.65;
+  color: var(--text-2);
+  max-width: 580px;
+  margin-bottom: var(--space-12);
+}
+.hero-cta {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+/* ---------- 8. 鎸夐挳 ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border: 1px solid var(--border-2);
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  background: transparent;
+  color: var(--text-1);
+  cursor: pointer;
+  transition: all var(--t-fast);
+}
+.btn:hover {
+  border-color: var(--text-2);
+  background: var(--bg-1);
+}
+.btn-primary {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--bg-0);
+}
+.btn-primary:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent-soft);
+}
+.btn-arrow::after {
+  content: '鈫?;
+  transition: transform var(--t-fast);
+}
+.btn-arrow:hover::after { transform: translateX(3px); }
+
+/* ---------- 9. 鍗＄墖鍩虹 ---------- */
+.card {
+  padding: var(--space-8);
+  background: var(--bg-1);
+  border: 1px solid var(--border-1);
+  border-radius: 8px;
+  transition: border-color var(--t-med), transform var(--t-med);
+}
+.card:hover { border-color: var(--border-2); }
+
+/* ---------- 10. 椤圭洰鍗＄墖 ---------- */
+.project {
+  display: block;
+  padding: var(--space-8);
+  border: 1px solid var(--border-1);
+  border-radius: 8px;
+  background: var(--bg-1);
+  transition: all var(--t-med);
+  position: relative;
+}
+.project:hover {
+  border-color: var(--border-3);
+  transform: translateY(-2px);
+}
+.project-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-3);
+}
+.project-name {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-1);
+  margin-bottom: 4px;
+}
+.project-tagline {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+}
+.project-year {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-3);
+}
+.project-desc {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--text-2);
+  margin: var(--space-4) 0;
+}
+.project-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.project-tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-2);
+  padding: 3px 8px;
+  background: var(--bg-2);
+  border-radius: 4px;
+}
+.project-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-3);
+}
+.project-status::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--text-3);
+}
+.project-status.active::before    { background: #6fcf97; }
+.project-status.maintained::before { background: var(--accent); }
+.project-status.archived::before  { background: var(--text-3); opacity: 0.5; }
+
+/* 缃戞牸 */
+.grid {
+  display: grid;
+  gap: var(--space-6);
+}
+.grid-2 { grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
+
+/* ---------- 11. About 椤甸潰 ---------- */
+.about-bio p {
+  font-size: 17px;
+  line-height: 1.8;
+  margin-bottom: var(--space-4);
+  color: var(--text-2);
+}
+.about-bio p:last-child { margin-bottom: 0; }
+
+.skill-group {
+  margin-bottom: var(--space-8);
+}
+.skill-group:last-child { margin-bottom: 0; }
+.skill-group-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--space-3);
+}
+.skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.skill-item {
+  padding: 6px 12px;
+  background: var(--bg-1);
+  border: 1px solid var(--border-1);
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--text-1);
+  transition: all var(--t-fast);
+}
+.skill-item:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* 鏃堕棿绾?*/
+.timeline { position: relative; }
+.timeline-item {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: var(--space-8);
+  padding: var(--space-6) 0;
+  border-bottom: 1px solid var(--border-1);
+}
+.timeline-item:last-child { border-bottom: none; }
+.timeline-period {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-3);
+  padding-top: 2px;
+}
+.timeline-content h3 {
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+.timeline-org {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: var(--space-3);
+}
+.timeline-desc {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--text-2);
+}
+@media (max-width: 640px) {
+  .timeline-item { grid-template-columns: 1fr; gap: var(--space-2); }
+  .timeline-period { color: var(--accent); }
+}
+
+/* ---------- 12. 鍗氬鏂囩珷鍒楄〃 ---------- */
+.post-list { display: flex; flex-direction: column; }
+.post-item {
+  display: block;
+  padding: var(--space-8) 0;
+  border-bottom: 1px solid var(--border-1);
+  transition: padding-left var(--t-med);
+}
+.post-item:last-child { border-bottom: none; }
+.post-item:hover { padding-left: var(--space-3); }
+.post-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-3);
+  margin-bottom: var(--space-2);
+}
+.post-tag {
+  padding: 2px 8px;
+  background: var(--accent-bg);
+  color: var(--accent);
+  border-radius: 3px;
+}
+.post-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text-1);
+  margin-bottom: var(--space-2);
+  transition: color var(--t-fast);
+}
+.post-item:hover .post-title { color: var(--accent); }
+.post-excerpt {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--text-2);
+  max-width: 640px;
+}
+
+/* ---------- 13. Contact 椤甸潰 ---------- */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+  max-width: 560px;
+}
+.contact-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-6) var(--space-8);
+  border: 1px solid var(--border-1);
+  border-radius: 8px;
+  background: var(--bg-1);
+  transition: all var(--t-med);
+  text-decoration: none;
+}
+.contact-item:hover {
+  border-color: var(--accent);
+  background: var(--bg-2);
+  transform: translateX(4px);
+}
+.contact-label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-1);
+}
+.contact-icon {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-2);
+  border-radius: 6px;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+}
+.contact-handle {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-3);
+}
+.contact-item:hover .contact-handle { color: var(--accent); }
+
+.contact-note {
+  margin-top: var(--space-12);
+  padding: var(--space-6) var(--space-8);
+  border-left: 2px solid var(--accent);
+  background: var(--bg-1);
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-2);
+  max-width: 560px;
+}
+
+/* ---------- 14. Footer ---------- */
+.footer {
+  padding: var(--space-12) 0;
+  border-top: 1px solid var(--border-1);
+  margin-top: var(--space-16);
+}
+.footer-inner {
+  max-width: var(--max-w-wide);
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-3);
+}
+.footer a { color: var(--text-2); }
+.footer a:hover { color: var(--accent); }
+
+@media (max-width: 640px) {
+  .footer-inner {
+    flex-direction: column;
+    gap: var(--space-3);
+    align-items: flex-start;
+  }
+}
+
+/* ---------- 15. 閾炬帴 / inline a ---------- */
+.link-accent {
+  color: var(--accent);
+  border-bottom: 1px solid var(--accent-bg);
+  transition: border-color var(--t-fast);
+}
+.link-accent:hover {
+  border-color: var(--accent);
+}
+
+/* ---------- 16. 绠€娲佺殑婊氬姩鎻ず ---------- */
+.fade-in {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- 17. 鍒嗛殧绾?---------- */
+.divider {
+  height: 1px;
+  background: var(--border-1);
+  border: none;
+  margin: var(--space-12) 0;
+}
+
+/* ---------- 18. 宸ュ叿绫?---------- */
+.mt-0  { margin-top: 0; }
+.mt-4  { margin-top: var(--space-4); }
+.mt-8  { margin-top: var(--space-8); }
+.mt-12 { margin-top: var(--space-12); }
+.mt-16 { margin-top: var(--space-16); }
+.mb-0  { margin-bottom: 0; }
+.mb-4  { margin-bottom: var(--space-4); }
+.mb-8  { margin-bottom: var(--space-8); }
+.mb-12 { margin-bottom: var(--space-12); }
+.mb-16 { margin-bottom: var(--space-16); }
+
+.text-mono  { font-family: var(--font-mono); }
+.text-mute  { color: var(--text-2); }
+.text-faint { color: var(--text-3); }
+.text-accent { color: var(--accent); }
+.text-center { text-align: center; }
+
+/* ---------- 19. 鍑忓皯鍔ㄦ晥 ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  .fade-in { opacity: 1; transform: none; }
+}
